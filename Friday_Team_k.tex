@@ -1,0 +1,104 @@
+\documentclass{beamer}
+\usetheme{default}
+\usecolortheme{default}
+
+\title{BT: Identifying good traces in very large Datasets}
+\subtitle{Clustering of Singular Values}
+\author{}
+\date{\today}
+
+\begin{document}
+
+\frame{\titlepage}
+
+\begin{frame}
+\frametitle{The H-Matrix}
+\begin{itemize}
+    \item 4x4 channel matrix $H \in \mathbb{C}^{4 \times 4}$
+    \item Rows receivers, columns transmitters
+    \item $H_{i,j}=$
+    Amplitude and phase received by receiver i transmitted by transmitter j
+
+    \item Current approach: \[
+\kappa(H) = \frac{\sigma_{\max}}{\sigma_{\min}}
+\]
+where $\sigma_{\max},\sigma_{\min}$ are max and min Singular Values
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Data}
+\centering
+\includegraphics[width=0.8\textwidth]{images/city.png}
+\end{frame}
+
+\begin{frame}
+\frametitle{Conditioning Numbers}
+\centering
+\includegraphics[width=0.8\textwidth]{images/con_num.png}
+\end{frame}
+
+\begin{frame}
+\frametitle{Singular Values}
+\centering
+\includegraphics[width=0.8\textwidth]{images/SVs.png}
+\end{frame}
+
+\begin{frame}
+\frametitle{Capacity}
+\begin{itemize}
+    \item<1-> Channel Capacity $C$ indicates maximum data rate
+    \item<1-> Depends on H-Matrix and $\rho$ (Signal to Noise Ratio)
+    \item<1-> Formula: \[
+C = \log_2 \left( \det \left( I + \frac{\rho}{N_t} H H^{\dagger} \right) \right)
+\]
+    where $N_t$ is number of transmit antennas
+    \item<1-> Higher capacity = better channel quality
+    \item<2-> Can be expressed using singular values: \[C = \sum_{i=1}^{4} \log_2 \left( 1 + \frac{\rho}{N_t} \sigma_i^2 \right)\]
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Capacity over Time}
+\centering
+
+\includegraphics[width=0.5\textwidth]{images/city.png}
+\includegraphics[width=0.5\textwidth]{images/cap.png}
+\end{frame}
+
+\begin{frame}
+\frametitle{Proposal}
+
+\begin{itemize}
+    \item<1-> Look at Singular Values
+    \item<2-> 4D instead of 1D
+    \item<3-> Analyze the 4D problem
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Analysis}
+\begin{itemize}
+        \item<1-> \textbf{Approach 1: Singular Value Clustering}
+        \begin{itemize}
+            \item Cluster the singular values over time
+            \item Analyse 1D time series of cluster number
+            \item Change of cluster could indicate a changepoint
+        \end{itemize}
+        \item<2-> \textbf{Approach 2: Autocorrelation Function}
+        \begin{itemize}
+            \item Compute the Autocorrelation function
+            \item Expect a sharp decline over time for a stationary series
+            \item Assume markovian structure in time series
+        \end{itemize}
+    \end{itemize}
+
+\end{frame}
+
+
+
+
+
+
+\end{document}
