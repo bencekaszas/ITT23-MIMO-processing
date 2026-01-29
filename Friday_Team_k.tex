@@ -69,30 +69,42 @@ C = \log_2 \left( \det \left( I + \frac{\rho}{N_t} H H^{\dagger} \right) \right)
 
 \begin{frame}
 \frametitle{Proposal}
+\[
+x_i = \log_2(1 + \sigma_i)
+\quad \mathbf{X} = [x_1, x_2, x_3, x_4]^T
+\]
+
 
 \begin{itemize}
-    \item<1-> Look at Singular Values
-    \item<2-> 4D instead of 1D
-    \item<3-> Analyze the 4D problem
+    \item<1-> Cluster Vectors $\mathbf{X}$ for entire Dataset with K-means
+    \item<2-> 4D data instead of 1D
+    \item<3-> Look for changepoints in cluster labels
 \end{itemize}
 \end{frame}
 
 \begin{frame}
-\frametitle{Analysis}
+\frametitle{Clustering Results}
+\centering
+
+\includegraphics[width=0.8\textwidth]{images/cluster_city.png}
+\end{frame}
+
+
+
+
+
+
+
+\begin{frame}
+\frametitle{Further Work}
 \begin{itemize}
-        \item<1-> \textbf{Approach 1: Singular Value Clustering}
-        \begin{itemize}
-            \item Cluster the singular values over time
-            \item Analyse 1D time series of cluster number
-            \item Change of cluster could indicate a changepoint
-        \end{itemize}
-        \item<2-> \textbf{Approach 2: Autocorrelation Function}
-        \begin{itemize}
-            \item Compute the Autocorrelation function
-            \item Expect a sharp decline over time for a stationary series
-            \item Assume markovian structure in time series
-        \end{itemize}
-    \end{itemize}
+    \item<1-> Validate Data/ try on real measurements
+    \item<2-> Explore other features e.g. phase information
+    \item<3-> Look at different clustering algorithms
+    \item<4-> Automate choosing the number of clusters
+    \item<5-> Compare with other approaches for identifying good traces
+    \item<6-> Use detected changepoints for channel improvement?
+\end{itemize}
 
 \end{frame}
 
